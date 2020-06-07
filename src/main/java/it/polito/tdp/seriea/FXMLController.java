@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 
-//controller turno A --> switchare al branch master_turnoB o master_turnoC per turno B o C
+//controller turno B --> switchare al branch master_turnoA o master_turnoC per turno A o C
 
 public class FXMLController {
 	
