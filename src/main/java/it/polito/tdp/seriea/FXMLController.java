@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 
-//controller turno B --> switchare al branch master_turnoA o master_turnoC per turno A o C
+//controller turno C --> switchare al branch master_turnoA o master_turnoB per turno A o B
 
 public class FXMLController {
 	
@@ -23,45 +23,53 @@ public class FXMLController {
     private URL location;
 
     @FXML
-    private ChoiceBox<?> boxSquadra;
+    private ChoiceBox<?> boxNumeroDiGoal;
 
     @FXML
-    private Button btnCalcolaConnessioniSquadra;
+    private ChoiceBox<?> boxSquadra1;
 
     @FXML
-    private Button btnSimulaEspulsi;
+    private Button btnCalcolaConnessioniGoal;
 
     @FXML
-    private Button btnAnalizzaStagioni;
+    private Button btnAnalizzaRisultati;
+
+    @FXML
+    private ChoiceBox<?> boxSquadra2;
+
+    @FXML
+    private Button btnSimulaStagioni;
 
     @FXML
     private TextArea txtResult;
 
     @FXML
-    void doAnalizzaStagioni(ActionEvent event) {
+    void doAnalizzaRisultati(ActionEvent event) {
 
     }
 
     @FXML
-    void doCalcolaConnessioniStagione(ActionEvent event) {
+    void doCalcolaConnessioniGoal(ActionEvent event) {
 
     }
 
     @FXML
-    void doSimulaEspulsi(ActionEvent event) {
+    void doSimulaStagioni(ActionEvent event) {
 
     }
 
     @FXML
     void initialize() {
-        assert boxSquadra != null : "fx:id=\"boxSquadra\" was not injected: check your FXML file 'SerieA.fxml'.";
-        assert btnCalcolaConnessioniSquadra != null : "fx:id=\"btnCalcolaConnessioniSquadra\" was not injected: check your FXML file 'SerieA.fxml'.";
-        assert btnSimulaEspulsi != null : "fx:id=\"btnSimulaEspulsi\" was not injected: check your FXML file 'SerieA.fxml'.";
-        assert btnAnalizzaStagioni != null : "fx:id=\"btnAnalizzaStagioni\" was not injected: check your FXML file 'SerieA.fxml'.";
+        assert boxNumeroDiGoal != null : "fx:id=\"boxNumeroDiGoal\" was not injected: check your FXML file 'SerieA.fxml'.";
+        assert boxSquadra1 != null : "fx:id=\"boxSquadra1\" was not injected: check your FXML file 'SerieA.fxml'.";
+        assert btnCalcolaConnessioniGoal != null : "fx:id=\"btnCalcolaConnessioniGoal\" was not injected: check your FXML file 'SerieA.fxml'.";
+        assert btnAnalizzaRisultati != null : "fx:id=\"btnAnalizzaRisultati\" was not injected: check your FXML file 'SerieA.fxml'.";
+        assert boxSquadra2 != null : "fx:id=\"boxSquadra2\" was not injected: check your FXML file 'SerieA.fxml'.";
+        assert btnSimulaStagioni != null : "fx:id=\"btnSimulaStagioni\" was not injected: check your FXML file 'SerieA.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'SerieA.fxml'.";
 
     }
-
+    
 	public void setModel(Model model) {
 		this.model = model;
 	}
