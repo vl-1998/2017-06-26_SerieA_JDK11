@@ -14,7 +14,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.seriea.FXMLController">
    <top>
-      <Label text="Esame 26/06/2017 Turno A" BorderPane.alignment="CENTER">
+      <Label text="Esame 26/06/2017 Turno B" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -38,13 +38,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Squadra" GridPane.rowIndex="1" />
-                  <Label text="Stagione" GridPane.rowIndex="2" />
+                  <Label text="Stagione" GridPane.rowIndex="1" />
                   <ChoiceBox fx:id="boxSquadra" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <ChoiceBox fx:id="boxStagione" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button fx:id="btnCalcolaConnessioniSquadra" mnemonicParsing="false" onAction="#doCalcolaConnessioniSquadra" prefHeight="27.0" prefWidth="149.0" text="Connessioni squadra" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button fx:id="btnSimulaTifosi" mnemonicParsing="false" onAction="#doSimulaTifosi" prefHeight="27.0" prefWidth="149.0" text="Simula tifosi" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button fx:id="btnAnalizzaSquadre" mnemonicParsing="false" onAction="#doAnalizzaSquadre" prefHeight="27.0" prefWidth="149.0" text="Analizza squadre" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                  <Button fx:id="btnCalcolaConnessioniSquadra" mnemonicParsing="false" onAction="#doCalcolaConnessioniStagione" prefHeight="27.0" prefWidth="164.0" text="Connessioni stagione" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button fx:id="btnSimulaEspulsi" mnemonicParsing="false" onAction="#doSimulaEspulsi" prefHeight="27.0" prefWidth="164.0" text="Simula espulsi" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Button fx:id="btnAnalizzaStagioni" mnemonicParsing="false" onAction="#doAnalizzaStagioni" prefHeight="27.0" prefWidth="164.0" text="Analizza stagioni" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
