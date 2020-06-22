@@ -3,6 +3,7 @@ package it.polito.tdp.seriea;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.seriea.model.Coppia;
 import it.polito.tdp.seriea.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +24,7 @@ public class FXMLController {
     private URL location;
 
     @FXML
-    private ChoiceBox<?> boxNumeroDiGoal;
+    private ChoiceBox<Integer> boxNumeroDiGoal;
 
     @FXML
     private ChoiceBox<?> boxSquadra1;
@@ -45,12 +46,25 @@ public class FXMLController {
 
     @FXML
     void doAnalizzaRisultati(ActionEvent event) {
-
+    	txtResult.clear();
+    	
+    	this.model.creaGrafo();
+    	txtResult.appendText("# Vertici: "+ this.model.getVertexNumber()+ " # Archi: "+ this.model.getEdgeNumber());
+    	
+    	boxNumeroDiGoal.getItems().addAll(this.model.vertexSet());
     }
 
     @FXML
     void doCalcolaConnessioniGoal(ActionEvent event) {
-
+    	Integer numeroGoal = boxNumeroDiGoal.getValue();
+    	
+    	if (numeroGoal == null) {
+    		txtResult.appendText("Scegliere il numero di goal!");
+    	}
+    	
+    	for (Coppia c : this.model.risultati(numeroGoal)) {
+    		txtResult.appendText(c.toString()+"\n");
+    	}
     }
 
     @FXML
