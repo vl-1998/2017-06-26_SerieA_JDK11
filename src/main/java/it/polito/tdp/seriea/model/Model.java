@@ -10,8 +10,6 @@ import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
-
-
 import it.polito.tdp.seriea.db.SerieADAO;
 
 public class Model {
@@ -54,4 +52,19 @@ public class Model {
 		return dao.vincenti(goal);
 	}
 
+	public List<Team> getTeams (){
+		return dao.listTeams();
+	}
+	
+	public String simula(Team squadra1, Team squadra2) {
+		Simulator sim = new Simulator();	
+		sim.init(squadra1, squadra2);
+		sim.run();
+		
+		String res = String.format("Squadra 1: %s, #tifosi= %d. Squadra 2: %s, #tifosi= %d. #Ribaltate= %d", 
+				sim.getnTifosiSquadra1().getSquadra(), sim.getnTifosiSquadra1().getTifosi(), sim.getnTifosiSquadra2().getSquadra(), 
+				sim.getnTifosiSquadra2().getTifosi(), sim.getnRibaltate());
+		return res;
+		
+	}
 }

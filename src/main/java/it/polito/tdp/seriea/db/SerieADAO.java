@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import it.polito.tdp.seriea.model.Coppia;
+import it.polito.tdp.seriea.model.Risultati;
 import it.polito.tdp.seriea.model.Season;
 import it.polito.tdp.seriea.model.Team;
 
@@ -109,7 +110,8 @@ public class SerieADAO {
 		String sql = "select FTHG, FTAG, count(*) as numero " + 
 				"from matches " + 
 				"where FTHG = ? " + 
-				"group by FTHG, FTAG";
+				"group by FTHG, FTAG "+
+				"order by count(*) DESC";
 		
 		List<Coppia> result = new ArrayList <>();
 		Connection conn = DBConnect.getConnection();
@@ -121,7 +123,6 @@ public class SerieADAO {
 			while (res.next()) {
 				Coppia c = new Coppia (res.getInt("FTHG"), res.getInt("FTAG"), res.getInt("numero"));
 				result.add(c);
-				Collections.sort(result);
 			}
 
 			conn.close();
@@ -130,6 +131,37 @@ public class SerieADAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<Risultati> risultati (Team squadra1, Team squadra2){
+		String sql = "select HomeTeam, AwayTeam, FTHG, FTAG, Date " + 
+				"from matches " + 
+				"where HomeTeam =? and AwayTeam =? " + 
+				"or HomeTeam =? and AwayTeam =? " + 
+				"order by Date asc";
+		List<Risultati> result = new ArrayList<>();
+		Connection conn = DBConnect.getConnection();
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, squadra1.getTeam());
+			st.setString(2, squadra2.getTeam());
+			st.setString(3, squadra2.getTeam());
+			st.setString(4, squadra1.getTeam());
+			ResultSet res = st.executeQuery();
+
+			while (res.next()) {
+				Risultati rTemp = new Risultati (res.getString("HomeTeam"), res.getString("AwayTeam"), 
+						res.getInt("FTHG"), res.getInt("FTAG"), res.getDate("Date").toLocalDate());
+				result.add(rTemp);
+			}
+
+			conn.close();
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 }

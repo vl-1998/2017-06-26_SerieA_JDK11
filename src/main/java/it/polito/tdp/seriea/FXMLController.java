@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.seriea.model.Coppia;
 import it.polito.tdp.seriea.model.Model;
+import it.polito.tdp.seriea.model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,7 +28,7 @@ public class FXMLController {
     private ChoiceBox<Integer> boxNumeroDiGoal;
 
     @FXML
-    private ChoiceBox<?> boxSquadra1;
+    private ChoiceBox<Team> boxSquadra1;
 
     @FXML
     private Button btnCalcolaConnessioniGoal;
@@ -36,7 +37,7 @@ public class FXMLController {
     private Button btnAnalizzaRisultati;
 
     @FXML
-    private ChoiceBox<?> boxSquadra2;
+    private ChoiceBox<Team> boxSquadra2;
 
     @FXML
     private Button btnSimulaStagioni;
@@ -49,13 +50,18 @@ public class FXMLController {
     	txtResult.clear();
     	
     	this.model.creaGrafo();
+    	boxNumeroDiGoal.getItems().clear();
+    	boxNumeroDiGoal.getItems().addAll(this.model.vertexSet());
     	txtResult.appendText("# Vertici: "+ this.model.getVertexNumber()+ " # Archi: "+ this.model.getEdgeNumber());
     	
-    	boxNumeroDiGoal.getItems().addAll(this.model.vertexSet());
+    	boxSquadra1.getItems().addAll(this.model.getTeams());
+    	boxSquadra2.getItems().addAll(this.model.getTeams());
+    	
     }
 
     @FXML
     void doCalcolaConnessioniGoal(ActionEvent event) {
+    	txtResult.clear();
     	Integer numeroGoal = boxNumeroDiGoal.getValue();
     	
     	if (numeroGoal == null) {
@@ -69,7 +75,16 @@ public class FXMLController {
 
     @FXML
     void doSimulaStagioni(ActionEvent event) {
-
+    	txtResult.clear();
+    	
+    	Team s1 = boxSquadra1.getValue();
+    	Team s2 = boxSquadra2.getValue();
+    	
+    	if (s1== null || s2 == null) {
+    		txtResult.appendText("Scegliere entrambe le squadre!");
+    	}
+    	
+    	txtResult.appendText(this.model.simula(s1, s2));
     }
 
     @FXML
