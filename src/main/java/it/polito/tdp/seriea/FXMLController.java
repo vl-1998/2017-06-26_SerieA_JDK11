@@ -3,7 +3,8 @@ package it.polito.tdp.seriea;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.polito.tdp.seriea.model.Model;
+import it.polito.tdp.seriea.model.*;
+import it.polito.tdp.seriea.model.Season;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +24,7 @@ public class FXMLController {
     private URL location;
 
     @FXML
-    private ChoiceBox<?> boxSquadra;
+    private ChoiceBox<Season> boxSquadra;
 
     @FXML
     private Button btnCalcolaConnessioniSquadra;
@@ -39,11 +40,24 @@ public class FXMLController {
 
     @FXML
     void doAnalizzaStagioni(ActionEvent event) {
-
+    	txtResult.clear();
+    	this.model.creaGrafo();
+    	txtResult.appendText("Grafo creato!\n #Vertici= "+this.model.getVertex().size()+"#Archi= "+this.model.getEdge().size());
+    	boxSquadra.getItems().clear();
+    	boxSquadra.getItems().addAll(this.model.getVertex());
     }
 
     @FXML
     void doCalcolaConnessioniStagione(ActionEvent event) {
+    	txtResult.clear();
+    	Season s = boxSquadra.getValue();
+    	if (s==null) {
+    		txtResult.appendText("Inserire una stagione!");
+    	}
+    	
+    	for(StagioneAdiacente se : this.model.squadreComuni(s)) {
+    		txtResult.appendText(se.toString()+"\n");
+    	}
 
     }
 
